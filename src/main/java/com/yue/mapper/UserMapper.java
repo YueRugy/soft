@@ -1,6 +1,7 @@
 package com.yue.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
+import com.yue.entity.User;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,4 +10,10 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface UserMapper {
+    @Select("select * from user where phone=#{phone}")
+    User selectByPhone(@Param("phone") String phone);
+    @Insert("INSERT INTO `user` ( `name`, `phone`, `password`, `invitation_code`, `company_id`, `type`, `status`, `register_status`, `recommend_user_id`, `balance_amount`, `create_time`, `open_id`)" +
+            "VALUES" +
+            "(#{name}, #{phone}, #{password}, #{invitationCode}, #{companyId}, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);")
+    int insert(User user);
 }

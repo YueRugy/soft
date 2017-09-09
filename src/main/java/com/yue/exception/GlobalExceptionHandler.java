@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by yue on 2017/9/7
+ * 同意异常处理类
  */
 @ControllerAdvice
 public class GlobalExceptionHandler {

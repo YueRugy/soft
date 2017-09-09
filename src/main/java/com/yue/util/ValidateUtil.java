@@ -1,8 +1,6 @@
 package com.yue.util;
 
 
-import org.apache.commons.lang.StringUtils;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,16 +23,6 @@ public class ValidateUtil {
         Pattern p = Pattern.compile(reg);
         Matcher m = p.matcher(idNumber);
         return m.matches();
-    }
-
-
-    public static void validatePhone(String phoneNumber) {
-        if (StringUtils.isBlank(phoneNumber)) {
-            return;
-        }
-        if (!isMobile(phoneNumber)) {
-            System.out.println("aa");
-        }
     }
 
 

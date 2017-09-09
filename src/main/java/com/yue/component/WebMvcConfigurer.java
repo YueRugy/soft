@@ -49,24 +49,24 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
         return new TestFilter();
     }*/
 
-    @Bean
+  /*  @Bean
     @Order(3)
     public DruidStatFilter druidStatFilter() {
         return new DruidStatFilter();
     }
 
-    /*servlet*/
+    *//*servlet*//*
     @Bean
     public ServletRegistrationBean getDemoServlet() {
         DruidStatViewServlet demoServlet = new DruidStatViewServlet();
         ServletRegistrationBean registrationBean = new ServletRegistrationBean();
         registrationBean.setServlet(demoServlet);
         List<String> urlMappings = new ArrayList<String>();
-        urlMappings.add("/*");////访问，可以添加多个
+        urlMappings.add("*//*");////访问，可以添加多个
         registrationBean.setUrlMappings(urlMappings);
         registrationBean.setLoadOnStartup(1);
         return registrationBean;
-    }
+    }*/
 
 }
 
