@@ -14,7 +14,11 @@ public enum ErrorMessage {
     type_is_error(Code.ERROR.getCode(), "type类型不正确"),
     phone_or_password_error(Code.ERROR.getCode(), "手机号或密码错误"),
     need_login(Code.NEED_LOGIN.getCode(), "账号未登录"),
-    account_is_disabled(Code.ERROR.getCode(), "账号被禁用"),;
+    account_is_disabled(Code.ERROR.getCode(), "账号被禁用"),
+    product_type_name_can_not_empty(Code.ERROR.getCode(), "产品类别名字不能为空"),
+    product_type_name_repeat(Code.ERROR.getCode(), "产品类别名字重复"),
+    product_type_is_not_exist(Code.ERROR.getCode(), "产品类别不存在"),
+    ;
     private int code;
     private String message;
 

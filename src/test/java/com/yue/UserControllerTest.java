@@ -36,7 +36,7 @@ public class UserControllerTest {
     public void test() throws Exception {
 
         RequestBuilder requestBuilder = post("/user/register/")
-                .param("phone", "18058798507")
+                .param("phone", "18058798508")
                 .param("password", "000000")
                 .param("openId", "123")
                 .param("userType", "1");

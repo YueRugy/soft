@@ -12,8 +12,9 @@ import com.yue.util.ResponseUtil;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author beter
- */
+ *
+ *
+ * */
 public class TokenOperation {
 
     private static int getHashCode(User user) {

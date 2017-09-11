@@ -2,6 +2,7 @@ package com.yue.mybatis;
 
 import com.google.common.base.CaseFormat;
 import com.yue.annotation.Invisible;
+import com.yue.entity.ProductType;
 import com.yue.entity.User;
 import org.apache.commons.lang.StringUtils;
 
@@ -72,7 +73,7 @@ public class MybatisUtil {
     }
 
     public static void main(String[] args) {
-        System.out.println(createInsert(User.class));
+        System.out.println(createInsert(ProductType.class));
     }
 
 
