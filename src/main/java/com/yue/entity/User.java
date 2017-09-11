@@ -1,10 +1,9 @@
 package com.yue.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.yue.util.JsonDateFormatFull;
+import lombok.*;
 
 import java.util.Date;
 
@@ -15,6 +14,7 @@ import java.util.Date;
 @Setter
 @EqualsAndHashCode
 @ToString
+@NoArgsConstructor
 public class User {
     private int id;
     private String name;
@@ -28,6 +28,7 @@ public class User {
     private int registerStatus;
     private int recommendUserId;
     private double balanceAmount;
+    @JsonSerialize(using = JsonDateFormatFull.class)
     private Date createTime;
     private String openId;
 }

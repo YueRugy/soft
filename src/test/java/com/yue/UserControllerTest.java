@@ -35,7 +35,11 @@ public class UserControllerTest {
     @Test
     public void test() throws Exception {
 
-        RequestBuilder requestBuilder = post("/user/register/").param("phone", "180587985");
+        RequestBuilder requestBuilder = post("/user/register/")
+                .param("phone", "18058798507")
+                .param("password", "000000")
+                .param("openId", "123")
+                .param("userType", "1");
         mvc.perform(requestBuilder).andExpect(status().isOk());
     }
 

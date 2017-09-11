@@ -24,6 +24,7 @@ public class SimpleSelectInExtendedLanguageDriver extends XMLLanguageDriver impl
         }
         script = "<script>" + script + "</script>";
 
+
         return super.createSqlSource(configuration, script, parameterType);
     }
 
