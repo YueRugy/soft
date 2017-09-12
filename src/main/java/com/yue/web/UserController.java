@@ -32,8 +32,15 @@ public class UserController extends AbstractController {
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public String login(@ModelAttribute User user, HttpServletResponse response) {
-        return dataJson(userService.login(user,response), Code.SUCCESS.getCode());
+        return dataJson(userService.login(user, response), Code.SUCCESS.getCode());
     }
 
+    /*
+    * 微信登录
+    * */
+    @RequestMapping(value = "weLogin", method = RequestMethod.POST)
+    public String weLogin(String openId, HttpServletResponse response) {
+        return dataJson(userService.weLogin(openId, response), Code.SUCCESS.getCode());
+    }
 
 }

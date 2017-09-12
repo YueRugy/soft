@@ -61,7 +61,7 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
         ServletRegistrationBean registrationBean = new ServletRegistrationBean();
         registrationBean.setServlet(demoServlet);
         List<String> urlMappings = new ArrayList<String>();
-        urlMappings.add("");////访问，可以添加多个
+        urlMappings.add("/druid/*");////访问，可以添加多个
         registrationBean.setUrlMappings(urlMappings);
         registrationBean.setLoadOnStartup(1);
         return registrationBean;

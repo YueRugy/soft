@@ -10,12 +10,14 @@ import com.yue.enums.UserStatus;
 import com.yue.enums.UserType;
 import com.yue.exception.SoftException;
 import com.yue.mapper.UserMapper;
+import com.yue.service.UserLastLoginService;
 import com.yue.service.UserService;
 import com.yue.util.ResponseUtil;
 import com.yue.util.ValidateUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
@@ -24,12 +26,15 @@ import java.util.Date;
  * Created by yue on 2017/9/9
  */
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
+    private final UserLastLoginService userLastLoginService;
 
     @Autowired
-    public UserServiceImpl(UserMapper userMapper) {
+    public UserServiceImpl(UserMapper userMapper, UserLastLoginService userLastLoginService) {
         this.userMapper = userMapper;
+        this.userLastLoginService = userLastLoginService;
     }
 
 
@@ -95,9 +100,28 @@ public class UserServiceImpl implements UserService {
             user.setOpenId(openId);
             userMapper.update(user);
         }
+        //登录写日志 写入数据库
+        userLastLoginService.log(user);
+        return user;
+    }
 
+    @Override
+    public Object weLogin(String openId, HttpServletResponse response) {
+        User user = userMapper.selectByOpenId(openId);
+        if (user == null) {
+            ResponseUtil.setCookie(SoftConstant.COOKIE_PHONE_NAME, "", SoftConstant.PATH, TimeConstant.TIME_DELETE_COOKIE_MILLISECOND, response);
+            throw new SoftException(ErrorMessage.phone_or_password_error);
+        }
 
-        return null;
+        if (user.getStatus() == UserStatus.disabled.getValue()) {
+            throw new SoftException(ErrorMessage.account_is_disabled);
+        }
+
+        String tokenStr = TokenOperation.genPhoneUser(user);
+        ResponseUtil.setCookie(SoftConstant.COOKIE_PHONE_NAME, tokenStr, SoftConstant.PATH, TimeConstant.TIME_EXPIRED_COOKIE_MILLISECOND, response);
+        userLastLoginService.log(user);
+
+        return user;
     }
 
 

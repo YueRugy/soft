@@ -47,10 +47,9 @@ public class ProductTypeControllerTest {
     @Test
     public void testAdd() throws Exception {
         RequestBuilder requestBuilder = post("/productType/")
-                .param("typeName", "户外1")
+                .param("typeName", "户外4")
                 .param("pid", "0");
         mvc.perform(requestBuilder).andExpect(status().isOk());
-
 
     }
 

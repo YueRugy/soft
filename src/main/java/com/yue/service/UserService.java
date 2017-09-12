@@ -11,4 +11,6 @@ public interface UserService {
     User register(User user, Integer userType);
 
     User login(User user, HttpServletResponse response);
+
+    Object weLogin(String openId, HttpServletResponse response);
 }

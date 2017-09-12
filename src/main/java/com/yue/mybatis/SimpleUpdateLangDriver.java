@@ -34,7 +34,7 @@ public class SimpleUpdateLangDriver extends AbstractLangDriver {
 
             sb.deleteCharAt(sb.lastIndexOf(","));
             sb.append("</set>");
-            getSql(sb.toString());
+            script = getSql(sb.toString());
         }
 
         return super.createSqlSource(configuration, script, parameterType);

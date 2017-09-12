@@ -24,7 +24,10 @@ public class JsonUtil {
     }
 
 
-    public static String objectToJson(Object o)  {
+    public static String objectToJson(Object o) {
+        if (mapper == null) {
+            mapper = new ObjectMapper();
+        }
         try {
             return mapper.writeValueAsString(o);
         } catch (JsonProcessingException e) {

@@ -47,6 +47,7 @@ public class TokenOperation {
         token.setId(user.getId());
         token.setThs(getHashCode(user));
         String str = JsonUtil.objectToJson(token);
+        System.out.println(str);
         return CipherUtil.encode(str, "wL14Xpd9");
     }
 

@@ -43,5 +43,19 @@ public class UserControllerTest {
         mvc.perform(requestBuilder).andExpect(status().isOk());
     }
 
+    @Test
+    public void loginTest() throws Exception {
+        RequestBuilder requestBuilder = post("/user/login/").param("phone", "18058798506")
+                .param("password", "000000").param("openId", "123456");
+        mvc.perform(requestBuilder).andExpect(status().isOk());
 
+    }
+
+    @Test
+    public void weLoginTest() throws Exception {
+        RequestBuilder requestBuilder = post("/user/weLogin/")
+                .param("openId", "123456");
+        mvc.perform(requestBuilder).andExpect(status().isOk());
+
+    }
 }

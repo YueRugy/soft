@@ -1,6 +1,7 @@
 package com.yue.mapper;
 
 import com.yue.entity.User;
+import com.yue.mybatis.SimpleUpdateLangDriver;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
@@ -22,7 +23,12 @@ public interface UserMapper {
     User selectInvitationCode(@Param("invitationCode") String invitationCode);
 
     @Select("select * from user where phone=#{phone} and password=#{password}")
-    User selectByPhoneAndPassword(String phone, String password);
-    @Update("update user ({#user})")
+    User selectByPhoneAndPassword(@Param("phone") String phone, @Param("password") String password);
+
+    @Lang(SimpleUpdateLangDriver.class)
+    @Update("update user  (#{user}) where id=#{id}")
     void update(User user);
+
+    @Select("select * from user where open_id=#{openId}")
+    User selectByOpenId(@Param("openId") String openId);
 }
