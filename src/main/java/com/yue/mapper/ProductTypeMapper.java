@@ -1,6 +1,7 @@
 package com.yue.mapper;
 
 import com.yue.entity.ProductType;
+import com.yue.mybatis.SimpleInsertLangDriver;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
@@ -18,7 +19,8 @@ public interface ProductTypeMapper {
     @Select("select * from product_type where id=#{pid}")
     ProductType selectByPid(@Param("pid") Integer pid);
 
-    @Insert("insert into product_type(pid,type_name,type,is_show) VALUES (#{pid},#{typeName},#{type},#{isShow})")
+    @Insert("insert  into product_type (#{productType})")
+    @Lang(SimpleInsertLangDriver.class)
     int insert(ProductType productType);
 
     @Select("select * from product_type where type=#{type}")
