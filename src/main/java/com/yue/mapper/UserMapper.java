@@ -23,4 +23,6 @@ public interface UserMapper {
 
     @Select("select * from user where phone=#{phone} and password=#{password}")
     User selectByPhoneAndPassword(String phone, String password);
+    @Update("update user ({#user})")
+    void update(User user);
 }

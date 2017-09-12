@@ -3,25 +3,20 @@ package com.yue.mybatis;
 import com.google.common.base.CaseFormat;
 import com.yue.annotation.Invisible;
 import org.apache.ibatis.mapping.SqlSource;
-import org.apache.ibatis.scripting.xmltags.XMLLanguageDriver;
 import org.apache.ibatis.session.Configuration;
 
 import java.lang.reflect.Field;
 import java.util.Date;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Created by yue on 2017/9/12
  */
-public class SimpleInsertLangDriver extends XMLLanguageDriver {
-    private final Pattern inPattern = Pattern.compile("\\(#\\{(\\w+)}\\)");
+public class SimpleInsertLangDriver extends AbstractLangDriver {
+
 
     @Override
     public SqlSource createSqlSource(Configuration configuration, String script, Class<?> parameterType) {
-
-        Matcher matcher = inPattern.matcher(script);
-        if (matcher.find()) {
+        if (matcher(script)) {
             StringBuilder sb = new StringBuilder();
             StringBuilder value = new StringBuilder();
             sb.append("(");
@@ -47,8 +42,7 @@ public class SimpleInsertLangDriver extends XMLLanguageDriver {
             sb.deleteCharAt(sb.lastIndexOf(","));
             value.deleteCharAt(value.lastIndexOf(","));
             sb.append(") ").append("VALUES (").append(value.toString()).append(")");
-            script = matcher.replaceAll(sb.toString());
-            script = "<script>" + script + "</script>";
+            script = getSql(sb.toString());
         }
 
         return super.createSqlSource(configuration, script, parameterType);

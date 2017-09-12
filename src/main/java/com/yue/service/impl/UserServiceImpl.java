@@ -2,6 +2,7 @@ package com.yue.service.impl;
 
 import com.yue.constant.SoftConstant;
 import com.yue.constant.TimeConstant;
+import com.yue.core.TokenOperation;
 import com.yue.entity.User;
 import com.yue.enums.ErrorMessage;
 import com.yue.enums.UserRegisterStatus;
@@ -76,6 +77,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User login(User user, HttpServletResponse response) {
 
+        String openId = user.getOpenId();
         user = userMapper.selectByPhoneAndPassword(user.getPhone(), user.getPassword());
         if (user == null) {
             ResponseUtil.setCookie(SoftConstant.COOKIE_PHONE_NAME, "", SoftConstant.PATH, TimeConstant.TIME_DELETE_COOKIE_MILLISECOND, response);
@@ -85,6 +87,15 @@ public class UserServiceImpl implements UserService {
         if (user.getStatus() == UserStatus.disabled.getValue()) {
             throw new SoftException(ErrorMessage.account_is_disabled);
         }
+
+        String tokenStr = TokenOperation.genPhoneUser(user);
+        ResponseUtil.setCookie(SoftConstant.COOKIE_PHONE_NAME, tokenStr, SoftConstant.PATH, TimeConstant.TIME_EXPIRED_COOKIE_MILLISECOND, response);
+
+        if (StringUtils.isNotBlank(openId) && StringUtils.isBlank(user.getOpenId())) {
+            user.setOpenId(openId);
+            userMapper.update(user);
+        }
+
 
         return null;
     }
