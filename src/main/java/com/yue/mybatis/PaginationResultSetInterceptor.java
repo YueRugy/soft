@@ -14,11 +14,13 @@ import org.apache.ibatis.reflection.factory.DefaultObjectFactory;
 import org.apache.ibatis.reflection.wrapper.DefaultObjectWrapperFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.jdbc.support.JdbcUtils;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -62,7 +64,10 @@ public class PaginationResultSetInterceptor extends PaginationInterceptor {
                 Long totalRecord = getTotalRecord(connection, sql, parameterHandler);
 
                 Object result = invocation.proceed();
-                return new PageImpl((List) result, pagination, totalRecord);
+                Page page = new PageImpl((List) result, pagination, totalRecord);
+                List<Page> list = new ArrayList<>();
+                list.add(page);
+                return list;
 
             }
         } catch (Exception e) {
@@ -89,6 +94,7 @@ public class PaginationResultSetInterceptor extends PaginationInterceptor {
             parameterHandler.setParameters(preparedStatement);
             resultSet = preparedStatement.executeQuery();
             resultSet.next();
+
             return (Long) JdbcUtils.getResultSetValue(resultSet, 1, Long.class);
         } catch (SQLException e) {
             e.printStackTrace();

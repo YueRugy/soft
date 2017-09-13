@@ -1,6 +1,7 @@
 package com.yue.mapper;
 
 import com.yue.entity.User;
+import com.yue.mybatis.SimplePageLangDriver;
 import com.yue.mybatis.SimpleUpdateLangDriver;
 import org.apache.ibatis.annotations.*;
 import org.springframework.data.domain.Pageable;
@@ -35,6 +36,7 @@ public interface UserMapper {
     @Select("select * from user where open_id=#{openId}")
     User selectByOpenId(@Param("openId") String openId);
 
-    @Select("select * from user")
+    @Lang(SimplePageLangDriver.class)
+    @Select("select * from user (#{user})")
     List<User> selectAllByPage(Pageable pageable);
 }

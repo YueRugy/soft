@@ -57,7 +57,8 @@ public class PaginationStatementInterceptor extends PaginationInterceptor {
 
             if (pagination != null) {
                 String originalSql = (String) metaObject.getValue("delegate.boundSql.sql");
-                metaObject.setValue("delegate.boundSql.sql", MySql5Dialect.getLimitString(originalSql, pagination.getPageNumber() * pagination.getPageSize(), pagination.getPageSize()));
+                String sql = MySql5Dialect.getLimitString(originalSql, pagination);
+                metaObject.setValue("delegate.boundSql.sql", sql);
 
                 if (logger.isDebugEnabled()) {
                     BoundSql boundSql = statementHandler.getBoundSql();

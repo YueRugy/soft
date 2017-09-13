@@ -5,6 +5,7 @@ import com.yue.enums.Code;
 import com.yue.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,7 +47,7 @@ public class UserController extends AbstractController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public Object getAll(@ModelAttribute User user, @PageableDefault Pageable pageable) {
+    public Object getAll(@ModelAttribute User user, @PageableDefault(sort = {"create_time","id"},direction = Sort.Direction.DESC)  Pageable pageable) {
         return dataJson(userService.getAll(user, pageable), Code.SUCCESS.getCode());
 
     }
