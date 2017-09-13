@@ -3,13 +3,12 @@ package com.yue.mybatis;
 /**
  * Created by yue on 2017/9/12
  */
-public class MySql5Dialect extends Dialect {
-    public String getLimitString(String querySqlString, int offset, int limit) {
+public class MySql5Dialect {
+    public static String getLimitString(String querySqlString, int offset, int limit) {
         return querySqlString + " limit " + offset + " ," + limit;
     }
 
-    @Override
-    public String getCountString(String querySqlString) {
+    public static String getCountString(String querySqlString) {
 
         int limitIndex = querySqlString.lastIndexOf("limit");
 

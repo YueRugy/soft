@@ -7,11 +7,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -26,10 +28,12 @@ public class UserControllerTest {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private PageableHandlerMethodArgumentResolver pageableArgumentResolver;
 
     @Before
     public void setUp() {
-        mvc = MockMvcBuilders.standaloneSetup(new UserController(userService)).build();
+        mvc = MockMvcBuilders.standaloneSetup(new UserController(userService)).setCustomArgumentResolvers(pageableArgumentResolver).build();
     }
 
     @Test
@@ -55,6 +59,14 @@ public class UserControllerTest {
     public void weLoginTest() throws Exception {
         RequestBuilder requestBuilder = post("/user/weLogin/")
                 .param("openId", "123456");
+        mvc.perform(requestBuilder).andExpect(status().isOk());
+
+    }
+
+    @Test
+    public void getAllTest() throws Exception {
+        RequestBuilder requestBuilder = get("/user/")
+                .param("openId", "123456").param("pageNo", "1").param("pageSize", "10");
         mvc.perform(requestBuilder).andExpect(status().isOk());
 
     }

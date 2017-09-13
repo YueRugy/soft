@@ -22,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by yue on 2017/9/9
@@ -126,8 +127,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Object getAll(User user, Pageable pageable) {
-        return null;
+    public List<User> getAll(User user, Pageable pageable) {
+
+
+        return userMapper.selectAllByPage(pageable);
     }
 
 

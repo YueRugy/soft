@@ -1,5 +1,6 @@
 package com.yue.component;
 
+import com.yue.mybatis.PaginationResultSetInterceptor;
 import com.yue.mybatis.PaginationStatementInterceptor;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -40,7 +41,7 @@ public class MybatisConfig implements TransactionManagementConfigurer {
         //分页插件
 
         PaginationStatementInterceptor paginationStatementInterceptor = new PaginationStatementInterceptor();
-
+        PaginationResultSetInterceptor paginationResultSetInterceptor = new PaginationResultSetInterceptor();
         // PageHelper pageHelper = new PageHelper();
         Properties properties = new Properties();
         properties.setProperty("reasonable", "true");
@@ -48,9 +49,10 @@ public class MybatisConfig implements TransactionManagementConfigurer {
         properties.setProperty("returnPageInfo", "check");
         properties.setProperty("params", "count=countSql");
         paginationStatementInterceptor.setProperties(properties);
+        paginationResultSetInterceptor.setProperties(properties);
 
         //添加插件
-        bean.setPlugins(new Interceptor[]{paginationStatementInterceptor});
+        bean.setPlugins(new Interceptor[]{paginationStatementInterceptor, paginationResultSetInterceptor});
 
         try {
             return bean.getObject();
