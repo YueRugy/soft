@@ -16,6 +16,7 @@ import com.yue.util.ResponseUtil;
 import com.yue.util.ValidateUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -122,6 +123,11 @@ public class UserServiceImpl implements UserService {
         userLastLoginService.log(user);
 
         return user;
+    }
+
+    @Override
+    public Object getAll(User user, Pageable pageable) {
+        return null;
     }
 
 

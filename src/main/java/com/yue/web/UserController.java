@@ -4,6 +4,8 @@ import com.yue.entity.User;
 import com.yue.enums.Code;
 import com.yue.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,6 +43,12 @@ public class UserController extends AbstractController {
     @RequestMapping(value = "weLogin", method = RequestMethod.POST)
     public String weLogin(String openId, HttpServletResponse response) {
         return dataJson(userService.weLogin(openId, response), Code.SUCCESS.getCode());
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public Object getAll(@ModelAttribute User user, @PageableDefault Pageable pageable) {
+        return dataJson(userService.getAll(user, pageable), Code.SUCCESS.getCode());
+
     }
 
 }
