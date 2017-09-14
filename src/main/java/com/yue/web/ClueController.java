@@ -38,4 +38,9 @@ public class ClueController extends AbstractController {
         return dataJson(clueService.detail(id), Code.SUCCESS.getCode());
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public String delete(@PathVariable Integer id){
+        return dataJson(clueService.delete(id), Code.SUCCESS.getCode());
+    }
+
 }

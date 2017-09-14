@@ -82,4 +82,13 @@ public class UserControllerTest {
         // System.out.println(content().string());
         System.out.println(mvc.perform(requestBuilder).andReturn().getResponse().getContentAsString());
     }
+
+    @Test
+    public void testDetailUserInfo() throws Exception {
+        RequestBuilder requestBuilder = get("/user/3");
+        //mvc.perform(requestBuilder).andExpect(status().isOk());
+
+        // System.out.println(content().string());
+        System.out.println(mvc.perform(requestBuilder).andReturn().getResponse().getContentAsString());
+    }
 }

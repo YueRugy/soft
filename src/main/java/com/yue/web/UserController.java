@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -46,7 +43,7 @@ public class UserController extends AbstractController {
         return dataJson(userService.weLogin(openId, response), Code.SUCCESS.getCode());
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/all/", method = RequestMethod.GET)
     public Object getAll(@PageableDefault(sort = {"create_time", "id"}, direction = Sort.Direction.DESC) Pageable pageable) {
         return dataJson(userService.getAll(pageable), Code.SUCCESS.getCode());
     }
@@ -63,4 +60,8 @@ public class UserController extends AbstractController {
 
     // getUserRecommendContacts
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public Object detailUserInfo(@PathVariable Integer id) {
+        return dataJson(userService.detailUserInfo(id), Code.SUCCESS.getCode());
+    }
 }

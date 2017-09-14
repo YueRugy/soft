@@ -14,4 +14,6 @@ public interface ClueService {
     Object getByCommId(Integer id, Pageable pageable);
 
     Object detail(Integer id);
+
+    Object delete(Integer id);
 }

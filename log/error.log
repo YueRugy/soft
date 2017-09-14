@@ -1345,3 +1345,4 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'creat
 	at com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:242) [junit-rt.jar:?]
 	at com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:70) [junit-rt.jar:?]
 [ WARN ] 2017-09-14 18:58:05 [ main:11565 ] [org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver.handleHttpRequestMethodNotSupported(DefaultHandlerExceptionResolver.java:215)] Request method 'POST' not supported
+[ WARN ] 2017-09-14 19:13:22 [ main:12309 ] [org.springframework.web.servlet.DispatcherServlet.noHandlerFound(DispatcherServlet.java:1176)] No mapping found for HTTP request with URI [/user/1] in DispatcherServlet with name ''

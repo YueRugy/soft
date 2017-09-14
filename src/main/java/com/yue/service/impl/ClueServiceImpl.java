@@ -48,4 +48,9 @@ public class ClueServiceImpl implements ClueService {
         return clueMapper.selectById(id);
 
     }
+
+    @Override
+    public Object delete(Integer id) {
+        return clueMapper.deleteById(id);
+    }
 }

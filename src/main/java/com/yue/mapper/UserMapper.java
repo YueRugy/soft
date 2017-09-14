@@ -45,4 +45,7 @@ public interface UserMapper {
 
     @Select("select * from user where recommend_user_id=#{userId}")
     List<User> getUserRecommendContacts(@Param("userId") int userId);
+
+    @Select("select * from user where id=#{id}")
+    User selectByUserId(@Param("id") Integer id);
 }

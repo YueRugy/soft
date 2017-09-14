@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
@@ -64,5 +65,12 @@ public class ClueControllerTest {
         // System.out.println(content().string());
         System.out.println(mvc.perform(requestBuilder).andReturn().getResponse().getContentAsString());
     }
+    @Test
+    public void testDelete() throws Exception {
+        RequestBuilder requestBuilder = delete("/clue/1");
+        //mvc.perform(requestBuilder).andExpect(status().isOk());
 
+        // System.out.println(content().string());
+        System.out.println(mvc.perform(requestBuilder).andReturn().getResponse().getContentAsString());
+    }
 }

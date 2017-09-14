@@ -144,6 +144,11 @@ public class UserServiceImpl implements UserService {
         return userMapper.getUserRecommendContacts(5);
     }
 
+    @Override
+    public Object detailUserInfo(Integer id) {
+        return userMapper.selectByUserId(id);
+    }
+
 
     private synchronized String getInviteCode() {
         return "A" + new Date().getTime();

@@ -23,4 +23,6 @@ public interface ClueMapper {
 
     @Select("select * from clue where id=#{id}")
     Clue selectById(@Param("id") Integer id);
+    @Delete("delete from clue where id=#{id}")
+    int deleteById(Integer id);
 }

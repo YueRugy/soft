@@ -22,4 +22,6 @@ public interface UserService {
     Object getTest();
 
     Object getUserRecommendContacts();
+
+    Object detailUserInfo(Integer id);
 }
