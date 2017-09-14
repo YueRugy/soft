@@ -33,6 +33,9 @@ public class SimpleInsertLangDriver extends AbstractLangDriver {
                     if (f.getName().equals("createTime")) {
                         sb.append(CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, f.getName())).append(",");
                         value.append("now()").append(",");
+                        continue;
+                    } else {
+                        continue;
                     }
                 }
 

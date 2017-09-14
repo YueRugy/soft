@@ -66,6 +66,9 @@ public class ProductTypeControllerTest {
     }
 
 
-
-
+    /**
+     * Created by yue on 2017/9/14.
+     */
+    public static class ClueControllerTest {
+    }
 }

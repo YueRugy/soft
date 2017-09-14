@@ -15,7 +15,7 @@ public class MySql5Dialect {
         return querySqlString + " limit " + offset + " ," + limit;
     }
 
-    static String soft(Pageable pageable, String sql) {
+    private static String soft(Pageable pageable, String sql) {
         StringBuilder sb = new StringBuilder(sql);
 
         Sort sort = pageable.getSort();
