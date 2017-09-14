@@ -2,10 +2,7 @@ package com.yue.mapper;
 
 import com.yue.entity.Clue;
 import com.yue.mybatis.SimpleInsertLangDriver;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Lang;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -23,4 +20,7 @@ public interface ClueMapper {
 
     @Select("select * from clue where recommend_user_id=#{id}")
     List<Clue> selectClueByCommIdByPage(Map<String, Object> param);
+
+    @Select("select * from clue where id=#{id}")
+    Clue selectById(@Param("id") Integer id);
 }

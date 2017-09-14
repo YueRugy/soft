@@ -59,7 +59,6 @@ public class SimplePageLangDriver extends AbstractLangDriver {
             sb.append("</trim>");
             script = getSql(sb.toString());
 
-            System.out.println(script);
         }
 
         return super.createSqlSource(configuration, script, parameterType);

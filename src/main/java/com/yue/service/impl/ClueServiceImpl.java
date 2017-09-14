@@ -42,4 +42,10 @@ public class ClueServiceImpl implements ClueService {
         return clueMapper.selectClueByCommIdByPage(param);
 
     }
+
+    @Override
+    public Object detail(Integer id) {
+        return clueMapper.selectById(id);
+
+    }
 }

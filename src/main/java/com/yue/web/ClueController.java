@@ -28,9 +28,14 @@ public class ClueController extends AbstractController {
         return dataJson(clueService.add(clue), Code.SUCCESS.getCode());
     }
 
-    @RequestMapping("/{id}")
+    @RequestMapping(value = "/userId/{id}", method = RequestMethod.GET)
     public String get(@PathVariable Integer id, @PageableDefault(size = 15, sort = {"create_time"}, direction = Sort.Direction.DESC) Pageable pageable) {
         return dataJson(clueService.getByCommId(id, pageable), Code.SUCCESS.getCode());
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public String detail(@PathVariable Integer id){
+        return dataJson(clueService.detail(id), Code.SUCCESS.getCode());
     }
 
 }

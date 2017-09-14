@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 /**
@@ -30,7 +31,7 @@ public class ClueControllerTest {
     @Before
     public void setUp() {
         mvc = MockMvcBuilders.standaloneSetup(new ClueController(clueService)).setCustomArgumentResolvers(pageableArgumentResolver).build();
-        ;
+
     }
 
 
@@ -48,10 +49,20 @@ public class ClueControllerTest {
 
     @Test
     public void testGetRecommendByPage() throws Exception {
-        RequestBuilder requestBuilder = post("/clue/1");
+        RequestBuilder requestBuilder = post("/clue/userId/1");
         //mvc.perform(requestBuilder).andExpect(status().isOk());
 
         // System.out.println(content().string());
         System.out.println(mvc.perform(requestBuilder).andReturn().getResponse().getContentAsString());
     }
+
+    @Test
+    public void testDetail() throws Exception {
+        RequestBuilder requestBuilder = get("/clue/1");
+        //mvc.perform(requestBuilder).andExpect(status().isOk());
+
+        // System.out.println(content().string());
+        System.out.println(mvc.perform(requestBuilder).andReturn().getResponse().getContentAsString());
+    }
+
 }

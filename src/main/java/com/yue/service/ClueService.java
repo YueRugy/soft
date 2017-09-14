@@ -12,4 +12,6 @@ public interface ClueService {
     Object add(Clue clue);
 
     Object getByCommId(Integer id, Pageable pageable);
+
+    Object detail(Integer id);
 }
