@@ -39,4 +39,7 @@ public interface UserMapper {
     @Lang(SimplePageLangDriver.class)
     @Select("select * from user (#{user})")
     List<User> selectAllByPage(Pageable pageable);
+
+    @Select("select * from user")
+    List<User> selectAll();
 }

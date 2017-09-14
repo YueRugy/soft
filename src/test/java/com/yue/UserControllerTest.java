@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
@@ -69,5 +70,7 @@ public class UserControllerTest {
                 .param("openId", "123456").param("pageNo", "1").param("pageSize", "10");
         mvc.perform(requestBuilder).andExpect(status().isOk());
 
+        // System.out.println(content().string());
+        System.out.println(mvc.perform(requestBuilder).andReturn().getResponse().getContentAsString());
     }
 }

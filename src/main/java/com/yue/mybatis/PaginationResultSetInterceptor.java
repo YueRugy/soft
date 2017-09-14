@@ -12,8 +12,6 @@ import org.apache.ibatis.reflection.DefaultReflectorFactory;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.factory.DefaultObjectFactory;
 import org.apache.ibatis.reflection.wrapper.DefaultObjectWrapperFactory;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -27,16 +25,15 @@ import java.util.Properties;
 /**
  * Created by yue on 2017/9/12
  */
-
 @Intercepts({@Signature(type = ResultSetHandler.class, method = "handleResultSets", args = {Statement.class})})
 public class PaginationResultSetInterceptor extends PaginationInterceptor {
 
-    private final static Logger logger = LogManager
-            .getLogger(PaginationStatementInterceptor.class);
+
 
     @Override
     @SuppressWarnings("unchecked")
     public Object intercept(Invocation invocation) throws Throwable {
+        System.out.println("222222222222222");
 
         DefaultResultSetHandler resultSetHandler = (DefaultResultSetHandler) invocation.getTarget();
         MetaObject metaResultSetHandler = MetaObject.forObject(resultSetHandler, new DefaultObjectFactory(), new DefaultObjectWrapperFactory(), new DefaultReflectorFactory());

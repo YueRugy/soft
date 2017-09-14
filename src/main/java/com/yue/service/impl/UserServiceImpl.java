@@ -127,10 +127,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAll(User user, Pageable pageable) {
+    public List<User> getAll(Pageable pageable) {
 
 
         return userMapper.selectAllByPage(pageable);
+    }
+
+    @Override
+    public List<User> getTest() {
+        return userMapper.selectAll();
     }
 
 

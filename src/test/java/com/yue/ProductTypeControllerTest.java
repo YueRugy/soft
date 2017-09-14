@@ -56,5 +56,16 @@ public class ProductTypeControllerTest {
 
 
 
+    @Test
+    public void testSelect() throws Exception {
+        RequestBuilder requestBuilder = get("/productType/1");
+        mvc.perform(requestBuilder).andExpect(status().isOk());
+
+        System.out.println(mvc.perform(requestBuilder).andReturn().getResponse().getContentAsString());
+
+    }
+
+
+
 
 }

@@ -31,6 +31,8 @@ public class PaginationStatementInterceptor extends PaginationInterceptor {
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
 
+        System.out.println("111111111111111111111");
+
         StatementHandler statementHandler = (StatementHandler) invocation.getTarget();
         //  String sql = statementHandler.getBoundSql().getSql();
 

@@ -47,9 +47,13 @@ public class UserController extends AbstractController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public Object getAll(@ModelAttribute User user, @PageableDefault(sort = {"create_time","id"},direction = Sort.Direction.DESC)  Pageable pageable) {
-        return dataJson(userService.getAll(user, pageable), Code.SUCCESS.getCode());
+    public Object getAll(@PageableDefault(sort = {"create_time", "id"}, direction = Sort.Direction.DESC) Pageable pageable) {
+        return dataJson(userService.getAll(pageable), Code.SUCCESS.getCode());
+    }
 
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public Object getTest() {
+        return userService.getTest();
     }
 
 }

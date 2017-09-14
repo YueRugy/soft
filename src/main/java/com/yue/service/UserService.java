@@ -17,5 +17,7 @@ public interface UserService {
 
     Object weLogin(String openId, HttpServletResponse response);
 
-    Object getAll(User user, Pageable pageable);
+    Object getAll(Pageable pageable);
+
+    Object getTest();
 }
