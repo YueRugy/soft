@@ -20,4 +20,6 @@ public interface UserService {
     Object getAll(Pageable pageable);
 
     Object getTest();
+
+    Object getUserRecommendContacts();
 }

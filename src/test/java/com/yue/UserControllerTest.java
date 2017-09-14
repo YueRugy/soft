@@ -59,7 +59,7 @@ public class UserControllerTest {
     @Test
     public void weLoginTest() throws Exception {
         RequestBuilder requestBuilder = post("/user/weLogin/")
-                .param("openId", "123456");
+                .param("openId", "oYjnvsmPGn6_-DakiC8QN3uFrBAg");
         mvc.perform(requestBuilder).andExpect(status().isOk());
 
     }
@@ -68,6 +68,15 @@ public class UserControllerTest {
     public void getAllTest() throws Exception {
         RequestBuilder requestBuilder = get("/user/")
                 .param("openId", "123456").param("pageNo", "1").param("pageSize", "10");
+        mvc.perform(requestBuilder).andExpect(status().isOk());
+
+        // System.out.println(content().string());
+        System.out.println(mvc.perform(requestBuilder).andReturn().getResponse().getContentAsString());
+    }
+
+    @Test
+    public void testRecommend() throws Exception {
+        RequestBuilder requestBuilder = get("/user/getUserRecommendContacts");
         mvc.perform(requestBuilder).andExpect(status().isOk());
 
         // System.out.println(content().string());

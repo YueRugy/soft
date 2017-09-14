@@ -2,6 +2,7 @@ package com.yue.service.impl;
 
 import com.yue.constant.SoftConstant;
 import com.yue.constant.TimeConstant;
+import com.yue.core.AppContent;
 import com.yue.core.TokenOperation;
 import com.yue.entity.User;
 import com.yue.enums.ErrorMessage;
@@ -136,6 +137,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getTest() {
         return userMapper.selectAll();
+    }
+
+    @Override
+    public Object getUserRecommendContacts() {
+        return userMapper.getUserRecommendContacts(5);
     }
 
 

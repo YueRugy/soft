@@ -56,4 +56,11 @@ public class UserController extends AbstractController {
         return userService.getTest();
     }
 
+    @RequestMapping(value = "/getUserRecommendContacts", method = RequestMethod.GET)
+    public Object getUserRecommendContacts() {
+        return userService.getUserRecommendContacts();
+    }
+
+    // getUserRecommendContacts
+
 }

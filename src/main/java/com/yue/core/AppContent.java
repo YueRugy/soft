@@ -22,7 +22,9 @@ public final class AppContent {
         try {
             return context.get().getToken().getId();
         } catch (Exception e) {
+            e.printStackTrace();
         }
+
         return 0;
     }
 
