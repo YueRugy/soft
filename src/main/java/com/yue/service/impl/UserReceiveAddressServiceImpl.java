@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Objects;
+
 /**
  * Created by yue on 2017/9/15
  */
@@ -40,22 +42,34 @@ public class UserReceiveAddressServiceImpl implements UserReceiveAddressService 
     @Override
     public Object update(Integer id, UserReceiveAddress userReceiveAddress) {
         userReceiveAddress.setId(id);
+        UserReceiveAddress defaultAddress = userReceiveAddressMapper.selectByUserIdAndIsDefault(1, UserReceiveAddressDefault.isDefault.getValue());
         //如果修改默认 原来的默认改为不默认
-        if (userReceiveAddress.getIsDefault() == UserReceiveAddressDefault.isDefault.getValue()) {
-            UserReceiveAddress defaultAddress = userReceiveAddressMapper.selectByUserIdAndIsDefault(1, UserReceiveAddressDefault.isDefault.getValue());
-            if (defaultAddress.getId() != id) {
-                System.out.println("aaaaaaaa");
-                defaultAddress.setIsDefault(UserReceiveAddressDefault.isNotDefault.getValue());
-                userReceiveAddressMapper.update(defaultAddress);
-            }
-        } else {
-            userReceiveAddress.setIsDefault(UserReceiveAddressDefault.isNotDefault.getValue());
+
+
+        if (defaultAddress != null && Objects.equals(defaultAddress.getId(), id)) {
+            userReceiveAddress.setIsDefault(UserReceiveAddressDefault.isDefault.getValue());
         }
+
+        if (userReceiveAddress.getIsDefault() != null && userReceiveAddress.getIsDefault() == UserReceiveAddressDefault.isDefault.getValue()
+                && defaultAddress != null && !Objects.equals(defaultAddress.getId(), id)) {
+            defaultAddress.setIsDefault(UserReceiveAddressDefault.isNotDefault.getValue());
+        }
+
         return userReceiveAddressMapper.update(userReceiveAddress);
     }
 
     @Override
     public Object delete(Integer id) {
         return userReceiveAddressMapper.delete(id);
+    }
+
+    @Override
+    public Object get() {
+        return userReceiveAddressMapper.selectByUserId(1);
+    }
+
+    @Override
+    public Object selectById(Integer id) {
+        return userReceiveAddressMapper.selectById(id);
     }
 }

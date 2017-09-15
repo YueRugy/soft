@@ -6,6 +6,8 @@ import com.yue.mybatis.SimpleUpdateLangDriver;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Created by yue on 2017/9/15
  */
@@ -25,4 +27,10 @@ public interface UserReceiveAddressMapper {
 
     @Delete("delete from user_receive_address where id=#{id}")
     int delete(@Param("id") Integer id);
+
+    @Select("select * from user_receive_address where user_id=#{userId}")
+    List<UserReceiveAddress> selectByUserId(@Param("userId") int userId);
+
+    @Select("select * from user_receive_address where id=#{id}")
+    UserReceiveAddress selectById(@Param("id") Integer id);
 }

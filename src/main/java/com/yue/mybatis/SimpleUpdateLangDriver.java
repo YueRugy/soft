@@ -28,17 +28,21 @@ public class SimpleUpdateLangDriver extends AbstractLangDriver {
                     continue;
                 }
 
-                sb.append("<if test=\">").append(f.getName()).append(" != NULL and");
+                sb.append("<if test=\"").append(f.getName()).append(" != null");
                 if (f.getType() == String.class) {
-                    sb.append(f.getName()).append(" != ''");
+                    sb.append(" and ").append(f.getName()).append(" != ''\"").append(">");
+                } else {
+                    sb.append("\"").append(">");
                 }
                 sb.append(CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, f.getName())).
-                        append("=").append("#{").append(f.getName()).append("}").append(",");
+                        append("=").append("#{").append(f.getName()).append("}").append(",").append("</if>");
             }
 
-            sb.deleteCharAt(sb.lastIndexOf(","));
+            //sb.deleteCharAt(sb.lastIndexOf(","));
             sb.append("</set>");
             script = getSql(sb.toString());
+            //  System.out.println(script);
+
         }
 
         return super.createSqlSource(configuration, script, parameterType);

@@ -11,4 +11,8 @@ public interface UserReceiveAddressService {
     Object update(Integer id, UserReceiveAddress userReceiveAddress);
 
     Object delete(Integer id);
+
+    Object get();
+
+    Object selectById(Integer id);
 }

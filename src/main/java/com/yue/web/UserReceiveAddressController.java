@@ -34,4 +34,15 @@ public class UserReceiveAddressController extends AbstractController {
     public String delete(@PathVariable Integer id) {
         return dataJson(userReceiveAddressService.delete(id), Code.SUCCESS.getCode());
     }
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String get() {
+        return dataJson(userReceiveAddressService.get(), Code.SUCCESS.getCode());
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public String selectById(@PathVariable Integer id) {
+        return dataJson(userReceiveAddressService.selectById(id), Code.SUCCESS.getCode());
+    }
+
 }

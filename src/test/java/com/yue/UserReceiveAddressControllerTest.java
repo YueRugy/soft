@@ -13,9 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 /**
  * Created by yue on 2017/9/15
@@ -52,7 +50,7 @@ public class UserReceiveAddressControllerTest {
 
     @Test
     public void testUpdate() throws Exception {
-        RequestBuilder requestBuilder = put("/phone/userReceiveAddress/1").
+        RequestBuilder requestBuilder = put("/phone/userReceiveAddress/3").
                 param("provinceId", "330000").
                 param("cityId", "330100").
                 param("districtId", "330108")
@@ -66,6 +64,19 @@ public class UserReceiveAddressControllerTest {
     public void testDelete() throws Exception {
         RequestBuilder requestBuilder = delete("/phone/userReceiveAddress/1");
 
+        System.out.println(mvc.perform(requestBuilder).andReturn().getResponse().getContentAsString());
+    }
+
+    @Test
+    public void testGetByUserId() throws Exception {
+        RequestBuilder requestBuilder = get("/phone/userReceiveAddress/");
+
+        System.out.println(mvc.perform(requestBuilder).andReturn().getResponse().getContentAsString());
+    }
+
+    @Test
+    public void testGetById() throws Exception {
+        RequestBuilder requestBuilder = get("/phone/userReceiveAddress/3");
         System.out.println(mvc.perform(requestBuilder).andReturn().getResponse().getContentAsString());
     }
 }
