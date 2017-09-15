@@ -2,7 +2,9 @@ package com.yue.service.impl;
 
 import com.yue.entity.UserReceiveAddress;
 import com.yue.enums.UserReceiveAddressDefault;
+import com.yue.mapper.AreaMapper;
 import com.yue.mapper.UserReceiveAddressMapper;
+import com.yue.service.AreaService;
 import com.yue.service.UserReceiveAddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,10 +19,12 @@ import java.util.Objects;
 @Transactional
 public class UserReceiveAddressServiceImpl implements UserReceiveAddressService {
     private final UserReceiveAddressMapper userReceiveAddressMapper;
+    private final AreaService areaService;
 
     @Autowired
-    public UserReceiveAddressServiceImpl(UserReceiveAddressMapper userReceiveAddressMapper) {
+    public UserReceiveAddressServiceImpl(UserReceiveAddressMapper userReceiveAddressMapper, AreaService areaService) {
         this.userReceiveAddressMapper = userReceiveAddressMapper;
+        this.areaService = areaService;
     }
 
     @Override
@@ -70,6 +74,10 @@ public class UserReceiveAddressServiceImpl implements UserReceiveAddressService 
 
     @Override
     public Object selectById(Integer id) {
-        return userReceiveAddressMapper.selectById(id);
+        UserReceiveAddress userReceiveAddress = userReceiveAddressMapper.selectById(id);
+        areaService.setName(userReceiveAddress);
+        return userReceiveAddress;
     }
+
+
 }

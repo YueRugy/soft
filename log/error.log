@@ -2761,3 +2761,6 @@ Caused by: org.xml.sax.SAXParseException: 与元素类型 "if" 相关联的 "tes
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:98) ~[spring-test-4.3.10.RELEASE.jar:4.3.10.RELEASE]
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:116) ~[spring-test-4.3.10.RELEASE.jar:4.3.10.RELEASE]
 	... 24 more
+[ WARN ] 2017-09-15 14:49:58 [ main:19068 ] [org.springframework.web.servlet.DispatcherServlet.noHandlerFound(DispatcherServlet.java:1176)] No mapping found for HTTP request with URI [area/0] in DispatcherServlet with name ''
+[ WARN ] 2017-09-15 14:50:04 [ main:17567 ] [org.springframework.web.servlet.DispatcherServlet.noHandlerFound(DispatcherServlet.java:1176)] No mapping found for HTTP request with URI [area/0] in DispatcherServlet with name ''
+[ WARN ] 2017-09-15 14:50:42 [ main:10917 ] [org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver.handleHttpRequestMethodNotSupported(DefaultHandlerExceptionResolver.java:215)] Request method 'GET' not supported
