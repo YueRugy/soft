@@ -19,22 +19,22 @@ public class ProductTypeController extends AbstractController {
         this.productTypeService = productTypeService;
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "back/", method = RequestMethod.POST)
     public String insert(@ModelAttribute ProductType productType) {
         return dataJson(productTypeService.insert(productType), Code.SUCCESS.getCode());
     }
 
-    @RequestMapping(value = "/{pid}", method = RequestMethod.GET)
+    @RequestMapping(value = "back/{pid}", method = RequestMethod.GET)
     public Object select(@PathVariable Integer pid) {
         return dataJson(productTypeService.select(pid), Code.SUCCESS.getCode());
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "back/{id}", method = RequestMethod.DELETE)
     public Object delete(@PathVariable Integer id) {
         return dataJson(productTypeService.delete(id), Code.SUCCESS.getCode());
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "back/{id}", method = RequestMethod.PUT)
     public Object put(@PathVariable Integer id, ProductType productType) {
         return dataJson(productTypeService.put(id, productType), Code.SUCCESS.getCode());
     }

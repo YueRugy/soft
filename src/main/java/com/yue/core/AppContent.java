@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 
 public final class AppContent {
-    private static final ThreadLocal<ThreadContextHolder> context = new ThreadLocal<ThreadContextHolder>();
+    private static final ThreadLocal<ThreadContextHolder> context = new ThreadLocal<>();
 
     public static void destroy() {
         context.set(null);
@@ -37,6 +37,7 @@ public final class AppContent {
     }
 
     public static void setToken(Token token) {
+        System.out.println(context);
         context.get().setToken(token);
     }
 

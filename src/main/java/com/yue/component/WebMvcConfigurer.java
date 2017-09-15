@@ -1,6 +1,8 @@
 package com.yue.component;
 
 import com.yue.filter.DruidStatFilter;
+import com.yue.filter.PhoneLoginFilter;
+import com.yue.filter.TestFilter;
 import com.yue.servlert.DruidStatViewServlet;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -19,7 +21,7 @@ import java.util.List;
 /**
  * Created by yue on 2017/9/8
  */
-@Configuration
+//@Configuration
 public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
     /*Interceptors*/
     @Override
@@ -42,11 +44,17 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
         return new HiddenHttpMethodFilter();
     }
 
-  /*  @Bean
+    @Bean
     @Order(2)
+    public PhoneLoginFilter phoneLoginFilter() {
+        return new PhoneLoginFilter();
+    }
+
+    @Bean
+    @Order(4)
     public TestFilter testFilter() {
         return new TestFilter();
-    }*/
+    }
 
     @Bean
     @Order(3)

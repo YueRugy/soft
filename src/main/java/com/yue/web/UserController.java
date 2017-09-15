@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  * Created by yue on 2017/9/9
  */
 @RestController
-@RequestMapping("user")
+@RequestMapping("/phone/user")
 public class UserController extends AbstractController {
     private final UserService userService;
 
@@ -48,7 +48,7 @@ public class UserController extends AbstractController {
         return dataJson(userService.getAll(pageable), Code.SUCCESS.getCode());
     }
 
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    @RequestMapping(value = "/test/", method = RequestMethod.GET)
     public Object getTest() {
         return userService.getTest();
     }
@@ -64,4 +64,6 @@ public class UserController extends AbstractController {
     public Object detailUserInfo(@PathVariable Integer id) {
         return dataJson(userService.detailUserInfo(id), Code.SUCCESS.getCode());
     }
+
+
 }

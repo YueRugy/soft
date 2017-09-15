@@ -7,6 +7,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 
 @SpringBootApplication
 @MapperScan(basePackages = "com.yue.mapper")
+@ServletComponentScan
 public class SoftApplication {
 
     public static void main(String[] args) {

@@ -25,7 +25,7 @@ public class TokenOperation {
 
     // 解码
     public static Token toPhoneToken(String strToken, HttpServletResponse response) {
-        String authToken = "";
+        String authToken;
         try {
             authToken = CipherUtil.decode(strToken, "wL14Xpd9");
         } catch (Exception e) {
@@ -39,6 +39,19 @@ public class TokenOperation {
         }
         token.setStrToken(strToken);
         return token;
+    }
+
+    // 验证
+    public static void validPhoneUser(User user, Token token, HttpServletResponse response) {
+        if (user == null) {
+            ResponseUtil.setCookie(SoftConstant.COOKIE_PHONE_NAME, null, SoftConstant.PATH, TimeConstant.TIME_DELETE_COOKIE_MILLISECOND, response);
+            throw new SoftException(ErrorMessage.need_login);
+        }
+
+        if (token.getThs() != getHashCode(user)) {
+            ResponseUtil.setCookie(SoftConstant.COOKIE_PHONE_NAME, null, SoftConstant.PATH, TimeConstant.TIME_DELETE_COOKIE_MILLISECOND, response);
+            throw new SoftException(ErrorMessage.need_login);
+        }
     }
 
     // 加密

@@ -1,5 +1,6 @@
 package com.yue;
 
+import com.yue.filter.PhoneLoginFilter;
 import com.yue.service.UserService;
 import com.yue.web.UserController;
 import org.junit.Before;
@@ -12,7 +13,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
+import static org.springframework.test.web.servlet.htmlunit.MockMvcWebClientBuilder.webAppContextSetup;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -27,6 +30,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class UserControllerTest {
     private MockMvc mvc;
 
+
+    @Autowired
+    private WebApplicationContext wac;
+
     @Autowired
     private UserService userService;
     @Autowired
@@ -34,14 +41,15 @@ public class UserControllerTest {
 
     @Before
     public void setUp() {
-        mvc = MockMvcBuilders.standaloneSetup(new UserController(userService)).setCustomArgumentResolvers(pageableArgumentResolver).build();
+        // mvc=webAppContextSetup(get())
+        mvc = MockMvcBuilders.standaloneSetup(new UserController(userService)).setCustomArgumentResolvers(pageableArgumentResolver).addFilters(new PhoneLoginFilter()).build();
     }
 
     @Test
     public void test() throws Exception {
 
-        RequestBuilder requestBuilder = post("/user/register/")
-                .param("phone", "18058798508")
+        RequestBuilder requestBuilder = post("/phone/user/register/")
+                .param("phone", "18058798510")
                 .param("password", "000000")
                 .param("openId", "123")
                 .param("userType", "1");
@@ -50,7 +58,7 @@ public class UserControllerTest {
 
     @Test
     public void loginTest() throws Exception {
-        RequestBuilder requestBuilder = post("/user/login/").param("phone", "18058798506")
+        RequestBuilder requestBuilder = post("/phone/user/login/").param("phone", "18058798506")
                 .param("password", "000000").param("openId", "123456");
         mvc.perform(requestBuilder).andExpect(status().isOk());
 
@@ -58,7 +66,7 @@ public class UserControllerTest {
 
     @Test
     public void weLoginTest() throws Exception {
-        RequestBuilder requestBuilder = post("/user/weLogin/")
+        RequestBuilder requestBuilder = post("/phone/user/weLogin/")
                 .param("openId", "oYjnvsmPGn6_-DakiC8QN3uFrBAg");
         mvc.perform(requestBuilder).andExpect(status().isOk());
 
@@ -66,7 +74,7 @@ public class UserControllerTest {
 
     @Test
     public void getAllTest() throws Exception {
-        RequestBuilder requestBuilder = get("/user/")
+        RequestBuilder requestBuilder = get("/phone/user/")
                 .param("openId", "123456").param("pageNo", "1").param("pageSize", "10");
         mvc.perform(requestBuilder).andExpect(status().isOk());
 
@@ -76,7 +84,7 @@ public class UserControllerTest {
 
     @Test
     public void testRecommend() throws Exception {
-        RequestBuilder requestBuilder = get("/user/getUserRecommendContacts");
+        RequestBuilder requestBuilder = get("/phone/user/getUserRecommendContacts");
         mvc.perform(requestBuilder).andExpect(status().isOk());
 
         // System.out.println(content().string());
@@ -85,7 +93,8 @@ public class UserControllerTest {
 
     @Test
     public void testDetailUserInfo() throws Exception {
-        RequestBuilder requestBuilder = get("/user/3");
+
+        RequestBuilder requestBuilder = get("/phone/user/3");
         //mvc.perform(requestBuilder).andExpect(status().isOk());
 
         // System.out.println(content().string());

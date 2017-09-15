@@ -32,28 +32,27 @@ public class ProductTypeControllerTest {
 
     @Test
     public void test() throws Exception {
-        RequestBuilder requestBuilder = post("/productType/")
+        RequestBuilder requestBuilder = post("/productType/back")
                 .param("typeName", "电子")
                 .param("pid", "0");
         mvc.perform(requestBuilder).andExpect(status().isOk());
 
-        requestBuilder = get("/productType/0");
+        requestBuilder = get("/productType//back/0");
         mvc.perform(requestBuilder).andExpect(status().isOk());
-        requestBuilder = put("/productType/6").param("typeName", "电子商品1");
+        requestBuilder = put("/productType//back/6").param("typeName", "电子商品1");
         mvc.perform(requestBuilder).andExpect(status().isOk());
-        requestBuilder = delete("/productType/6");
+        requestBuilder = delete("/productType/back/6");
         mvc.perform(requestBuilder).andExpect(status().isOk());
     }
+
     @Test
     public void testAdd() throws Exception {
-        RequestBuilder requestBuilder = post("/productType/")
-                .param("typeName", "户外4")
+        RequestBuilder requestBuilder = post("/productType/back/")
+                .param("typeName", "户外278")
                 .param("pid", "0");
         mvc.perform(requestBuilder).andExpect(status().isOk());
 
     }
-
-
 
 
     @Test
