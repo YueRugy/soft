@@ -15,9 +15,9 @@ import java.util.Date;
 @EqualsAndHashCode
 @ToString
 public class UserLastLogin {
-    private int id;
-    private int userId;
-    private int type;
+    private Integer id;
+    private Integer userId;
+    private Integer type;
     private Date lastLoginTime;
     private Date updateTime;
 }

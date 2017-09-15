@@ -16,15 +16,15 @@ import java.util.Date;
 @EqualsAndHashCode
 @ToString
 public class UserReceiveAddress {
-    private int id;
-    private int userId;
-    private int provinceId;
-    private int cityId;
-    private int districtId;
+    private Integer id;
+    private Integer userId;
+    private Integer provinceId;
+    private Integer cityId;
+    private Integer districtId;
     private String address;
     private String contact;
     private String contactPhone;
-    private int isDefault;
+    private Integer isDefault;
     private Date createTime;
     @Invisible
     private String provinceName;

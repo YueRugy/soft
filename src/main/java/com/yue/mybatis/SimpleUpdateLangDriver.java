@@ -28,6 +28,10 @@ public class SimpleUpdateLangDriver extends AbstractLangDriver {
                     continue;
                 }
 
+                sb.append("<if test=\">").append(f.getName()).append(" != NULL and");
+                if (f.getType() == String.class) {
+                    sb.append(f.getName()).append(" != ''");
+                }
                 sb.append(CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, f.getName())).
                         append("=").append("#{").append(f.getName()).append("}").append(",");
             }

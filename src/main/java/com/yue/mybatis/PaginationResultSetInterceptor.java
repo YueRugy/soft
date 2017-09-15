@@ -33,7 +33,6 @@ public class PaginationResultSetInterceptor extends PaginationInterceptor {
     @Override
     @SuppressWarnings("unchecked")
     public Object intercept(Invocation invocation) throws Throwable {
-        System.out.println("222222222222222");
 
         DefaultResultSetHandler resultSetHandler = (DefaultResultSetHandler) invocation.getTarget();
         MetaObject metaResultSetHandler = MetaObject.forObject(resultSetHandler, new DefaultObjectFactory(), new DefaultObjectWrapperFactory(), new DefaultReflectorFactory());

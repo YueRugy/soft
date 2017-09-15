@@ -14,21 +14,21 @@ import java.util.Date;
 @EqualsAndHashCode
 @ToString
 public class Clue {
-    private int id;
+    private Integer id;
     private String title;
-    private int status;
+    private Integer status;
     private String name;
     private String phone;
-    private int recommendUserId;
-    private int isShow;
-    private int adminUserId;
+    private Integer recommendUserId;
+    private Integer isShow;
+    private Integer adminUserId;
     private Date createTime;
     private Date updateTime;
-    private int isDeal;
+    private Integer isDeal;
 
     @Invisible
     private String adminUserName;
     @Invisible
-    private int businessId;
+    private Integer businessId;
     // private ClueFlow clueFlow;
 }

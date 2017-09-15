@@ -16,17 +16,17 @@ import java.util.Date;
 @ToString
 @NoArgsConstructor
 public class User {
-    private int id;
+    private Integer id;
     private String name;
     private String phone;
     @JsonIgnore
     private String password;
     private String invitationCode;
-    private int companyId;
-    private int type;
-    private int status;
-    private int registerStatus;
-    private int recommendUserId;
+    private Integer companyId;
+    private Integer type;
+    private Integer status;
+    private Integer registerStatus;
+    private Integer recommendUserId;
     private double balanceAmount;
     @JsonSerialize(using = JsonDateFormatFull.class)
     private Date createTime;
