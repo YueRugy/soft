@@ -18,7 +18,7 @@ public enum ErrorMessage {
     product_type_name_can_not_empty(Code.ERROR.getCode(), "产品类别名字不能为空"),
     product_type_name_repeat(Code.ERROR.getCode(), "产品类别名字重复"),
     product_type_is_not_exist(Code.ERROR.getCode(), "产品类别不存在"),
-    ;
+    tag_name_is_exists(Code.ERROR.getCode(), "标签名字已存在"),;
     private int code;
     private String message;
 

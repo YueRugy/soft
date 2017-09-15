@@ -12,7 +12,7 @@ import lombok.ToString;
 @Setter
 @EqualsAndHashCode
 @ToString
-public class ProductTage {
+public class ProductTag {
     private Integer id;
     private String name;
 }
