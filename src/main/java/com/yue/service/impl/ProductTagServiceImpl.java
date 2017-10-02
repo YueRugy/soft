@@ -54,4 +54,8 @@ public class ProductTagServiceImpl implements ProductTagService {
     public Object get(Pageable pageable) {
         return productTagMapper.getAllByPage(pageable);
     }
+
+    public static void main(String[] args) {
+        System.out.println("aaaaaa");
+    }
 }
